@@ -33,6 +33,7 @@ var pJS = function(tag_id, params){
       h: canvas_el.offsetHeight
     },
     particles: {
+      fps_limit: 30,
       number: {
         value: 400,
         density: {
@@ -167,6 +168,7 @@ var pJS = function(tag_id, params){
     mode_repulse_distance: pJS.interactivity.modes.repulse.distance
   };
 
+  pJS.last_draw = Date.now();
 
   pJS.fn.retinaInit = function(){
 
@@ -1324,6 +1326,12 @@ var pJS = function(tag_id, params){
 
 
   pJS.fn.vendors.draw = function(){
+    // if it isn't yet time, reschedule and return
+    if (Date.now() - pJS.last_draw < 1000 / pJS.particles.fps_limit) {
+	    pJS.fn.drawAnimFrame = requestAnimationFrame(pJS.fn.vendors.draw);
+	    return;
+    }
+    pJS.last_draw = Date.now();
 
     if(pJS.particles.shape.type == 'image'){
 

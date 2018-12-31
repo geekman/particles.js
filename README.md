@@ -37,6 +37,7 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 ```javascript
 {
   "particles": {
+    "fps_limit": 30,
     "number": {
       "value": 80,
       "density": {
@@ -153,6 +154,7 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 
 key | option type / notes | example
 ----|---------|------
+`particles.fps_limit` | number | `30`
 `particles.number.value` | number | `40`
 `particles.number.density.enable` | boolean | `true` / `false` 
 `particles.number.density.value_area` | number | `800`
